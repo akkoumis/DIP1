@@ -1,27 +1,22 @@
 function Y = pointtransform(X, x1, y1, x2, y2)
 %POINTTRANSFORM Summary of this function goes here
 %   Detailed explanation goes here
-if (x1==0)
-    alpha = inf;
-else
-    alpha = y1/x1;
-end
-if (x2==x1)
-    beta = inf;
-else
-    beta = (y2-y1)/(x2-x1);
-end
-if (x2==1)
-    gamma = inf;
-else
-    gamma = (1-y2)/(1-x2);
-end
 
-Y=X;
+alpha = y1/x1; % Matlab supports division by zero (Inf)
+beta = (y2-y1)/(x2-x1); % Matlab supports division by zero (Inf)
+gamma = (1-y2)/(1-x2); % Matlab supports division by zero (Inf)
 
-for i = 1:size(Y,1)
-   for j = 1:size(Y,2)
-          
+Y = zeros(size(X,1),size(X,2));
+
+for i = 1:size(X,1)
+   for j = 1:size(X,2)
+       if (X(i,j)<=x1)
+           Y(i,j)=alpha*X(i,j);                   
+       elseif (X(i,j)<x2)
+           Y(i,j)=beta*(X(i,j)-x1)+y1;                   
+       else
+           Y(i,j)=gamma*(X(i,j)-x2)+y2;           
+       end   
    end
 end
 
