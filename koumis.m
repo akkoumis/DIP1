@@ -15,7 +15,7 @@ figure(3)
 imshow(y);
 imwrite(y,'part1a.bmp');
 %% Contrast Strech - Part B%%
-y_floor=pointtransform(x,0.5, 0, 0.5, 0.5);
+y_floor=pointtransform(x,0.5, 0, 0.5, 1);
 figure(4);
 imshow(y_floor);
 imwrite(y_floor,'part1b.bmp');
