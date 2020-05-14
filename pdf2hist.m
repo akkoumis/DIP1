@@ -11,7 +11,7 @@ function h = pdf2hist(d, f)
 %   f is a function pointer that returns the result of the PDF, on a given the x.   
 
 n = length(d)-1;
-h = zeros(n,1);
+h = zeros(1,n);
 step = 0.0001;
 
 for i=1:n
@@ -27,7 +27,7 @@ for i=1:n
     
 end
 fprintf("Sum before normalization = %f.\n",sum(h)); % Print the sum before normalization, to view the integration error.
-h = h / sum(h); % Normalize the result
+h = h ./ sum(h); % Normalize the result
 
 end
 
