@@ -189,7 +189,7 @@ imwrite(y2_norm,'part2_3_case2_normalize.bmp');
 
 %% Case 3 %%
 f3 = @(x)normpdf(x,0.5,0.1);
-d = 0:0.05:1;
+d = 0:0.02:1;
 h3 = pdf2hist(d, f3);
 v3 = (d(1:end-1)+d(2:end))/2;
 figure('Name','Histogram for 3rd PDF Histogram Tranform');
@@ -200,7 +200,7 @@ ylabel('h')
 y3 = histtransform(x,h3,v3);
 figure('Name','Image after Histogram Tranform based on Normal Distribution (0.5, 1)');
 imshow(y3);
-imwrite(y3,'part2_3_case3_d_20.bmp');
+imwrite(y3,'part2_3_case3_d_50.bmp');
 [hy3 , hx3] = hist(y3(:), v3);
 hy3 = hy3/256/256; % Normalize frequencies of appereance
 figure('Name','Histogram after Histogram Tranform based on Normal Distribution (0.5, 1)');
@@ -212,16 +212,16 @@ distance_chisq_y3 = trace(distChiSq(h3',hy3'))/length(h3);
 
 %% Contrast Strech Case 3 %%
 
-y3_cont_stretched=pointtransform(y3,0.4, 0.08, 0.6, 0.92);
+y3_cont_stretched=pointtransform(y3,0.37, 0.074, 0.63, 0.926);
 figure('Name','Tranfer Function for Contrast Stretch');
-tfx=[0,0.4,0.6,1];
-tfy=[0,0.08,0.92,1];
+tfx=[0,0.37,0.63,1];
+tfy=[0,0.074,0.926,1];
 plot(tfx,tfy,'-o');
 xlabel('Input') ;
 ylabel('Output'); 
 figure('Name','Image after Contrast Stretch');
 imshow(y3_cont_stretched);
-imwrite(y3_cont_stretched,'part2_3_case3_d_20_contrast_stretched.bmp');
+imwrite(y3_cont_stretched,'part2_3_case3_d_50_contrast_stretched.bmp');
 [hy3cs , hx3cs] = hist(y3_cont_stretched(:), v3);
 hy3cs = hy3cs/256/256; % Normalize frequencies of appereance
 figure('Name','Histogram after Contrast Stretch');
